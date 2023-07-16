@@ -1,0 +1,18 @@
+.list-image {
+    width: 250px; /* Establece el ancho deseado */
+    height: auto; /* Ajusta la altura automáticamente */
+    background-color: #f2f2f2;
+    animation: skeleton-loading 1.5s infinite ease-in-out;
+  }
+
+  
+  @keyframes skeleton-loading {
+    0% {
+      background-position: -200px 0;
+    }
+    100% {
+      background-position: 200px 0;
+    }
+  }
+  
+  

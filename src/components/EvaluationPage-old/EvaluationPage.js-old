@@ -1,0 +1,232 @@
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import loading from '../../assets/images/pageload-spinner.gif';
+import './EvaluationPage.css';
+import '../Item/Item.css'
+
+function EvaluationPage({ onApplyTagsToItems, onAddTagsToItems }) {
+  const [items, setItems] = useState([]);
+  const [tags, setTags] = useState([]);
+  const [selectedItems, setSelectedItems] = useState([]);
+  const [selectedTagsForItems, setSelectedTagsForItems] = useState([]);
+  const [selectedTags, setSelectedTags] = useState([]);
+  const [showTags, setShowTags] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchItems = async () => {
+      try {
+        const response = await axios.post('https://slaft.retailmkt.mx/SLMKT01/slaft_app/SlaftCamp_ws/obtenerObjetosTags_byColeccion.php', { coleccion: 'coleccion1' });
+        const newItems = response.data.map((obj) => ({
+          id: obj.id,
+          codigo: obj.codigo,
+          ancho: obj.ancho,
+          alto: obj.alto,
+          fondo: obj.fondo,
+          rank: obj.rank,
+          area: obj.area,
+          no_cont: obj.no_cont,
+          no_obj: obj.no_obj,
+          nombre_obj: obj.nombre_obj,
+          clave_obj: obj.clave_obj,
+          foto: obj.foto,
+          tags: [],
+        }));
+
+        setItems((prevItems) => {
+          const filteredItems = prevItems.filter((item) => !newItems.some((newItem) => newItem.id === item.id));
+          return [...filteredItems, ...newItems];
+        });
+      } catch (error) {
+        console.error('Error al realizar la solicitud POST', error);
+      }
+    };
+
+    fetchItems();
+  }, []);
+
+  useEffect(() => {
+    const fetchTags = async () => {
+      try {
+        const response = await axios.post('https://slaft.retailmkt.mx/SLMKT01/slaft_app/SlaftCamp_ws/obtener_tags.php');
+        setTags(response.data);
+      } catch (error) {
+        console.error('Error al realizar la solicitud POST para obtener los tags', error);
+      }
+    };
+
+    fetchTags();
+  }, []);
+
+  useEffect(() => {
+    const delay = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(delay);
+  }, []);
+
+  const handleItemSelection = (itemId, isChecked) => {
+    if (isChecked) {
+      setSelectedItems((prevSelectedItems) => {
+        const selectedItem = items.find((item) => item.id === itemId);
+        const updatedItems = [...prevSelectedItems, selectedItem];
+        return updatedItems;
+      });
+    } else {
+      setSelectedItems((prevSelectedItems) => {
+        const updatedItems = prevSelectedItems.filter((item) => item.id !== itemId);
+        return updatedItems;
+      });
+    }
+  };
+
+  const handleApplyTagsToItems = () => {
+    setSelectedItems((prevSelectedItems) => {
+      const updatedItems = prevSelectedItems.map((item) => {
+        const isSelected = selectedItems.some((selectedItem) => selectedItem.id === item.id);
+        if (isSelected) {
+          const selectedTagsForItem = selectedTagsForItems.find((tagItem) => tagItem.itemId === item.id);
+          const tagsToAdd = selectedTagsForItem ? selectedTagsForItem.tags : [];
+          return {
+            ...item,
+            tags: [...item.tags, ...tagsToAdd],
+          };
+        }
+        return item;
+      });
+      return updatedItems;
+    });
+
+    onApplyTagsToItems(selectedItems);
+  };
+
+  const handleTagSelection = (tag) => {
+    const isChecked = selectedTags.some((selectedTag) => selectedTag.id === tag.id);
+
+    if (isChecked) {
+      setSelectedTags((prevSelectedTags) => {
+        const updatedTags = prevSelectedTags.filter((selectedTag) => selectedTag.id !== tag.id);
+        return updatedTags;
+      });
+    } else {
+      setSelectedTags((prevSelectedTags) => {
+        const updatedTags = [...prevSelectedTags, tag];
+        return updatedTags;
+      });
+    }
+  };
+
+  const handleCheckboxChange = (event) => {
+    if (event.target.checked) {
+      setSelectedTagsForItems((prevSelectedTagsForItems) => {
+        const updatedTagsForItems = selectedItems.map((item) => ({
+          itemId: item.id,
+          tags: selectedTags,
+        }));
+        return [...prevSelectedTagsForItems, ...updatedTagsForItems];
+      });
+    } else {
+      setSelectedTagsForItems((prevSelectedTagsForItems) => {
+        const updatedTagsForItems = prevSelectedTagsForItems.filter(
+          (tagItem) => !selectedItems.some((item) => item.id === tagItem.itemId)
+        );
+        return updatedTagsForItems;
+      });
+    }
+  };
+
+  const handleAddTagsToItems = () => {
+    setSelectedTagsForItems((prevSelectedTagsForItems) => {
+      const updatedTagsForItems = selectedItems.map((item) => {
+        const selectedTagsForItem = prevSelectedTagsForItems.find((tagItem) => tagItem.itemId === item.id);
+        const updatedTags = selectedTagsForItem
+          ? [...selectedTagsForItem.tags, ...selectedTags]
+          : [...selectedTags];
+        return { itemId: item.id, tags: updatedTags };
+      });
+      return updatedTagsForItems;
+    });
+
+    onAddTagsToItems(selectedTags);
+  };
+
+  const combinedTags = [...selectedTags, ...tags];
+
+  return (
+    <div className="evaluation-page">
+      <h1>Page Title</h1>
+
+      {isLoading ? (
+        <div className="loading-container">
+          <img src={loading} alt="Loading" />
+          <p>Loading...</p>
+        </div>
+      ) : (
+        <>
+          <div className="item-list">
+            {items.map((item) => (
+              <div className="item card card-style" key={item.id}>
+                <div className="div-title">
+                  <p className="item-key">{item.clave_obj}</p>
+                  <div className="checkpoint-style form-check">
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      id="selection"
+                      checked={selectedItems.some((selectedItem) => selectedItem.id === item.id)}
+                      onChange={(e) => handleItemSelection(item.id, e.target.checked)}
+                    />
+                  </div>
+                </div>
+                <div className="item-image">
+                  <span className="item-label">{item.rank}</span>
+                  <div className="item-rating">{item.fondo}</div>
+                  <img src={item.foto} alt="Imagen" />
+                </div>
+                <div className="item-details">
+                  <p className="item-name">Nombre: {item.nombre_obj}</p>
+                  <p className="item-type">Tipo: {item.codigo}</p>
+                  <p className="item-area">Área: {item.area}</p>
+                  <p className="item-measures">Medidas: {item.ancho}x{item.alto}x{item.fondo}</p>
+                  <div className="flag-container">
+                    <div className="flag-icons">
+                      <span className="feather-icon icon-flag icon-sm icon-blue"></span>
+                      <span className="feather-icon icon-flag icon-sm"></span>
+                      <span className="feather-icon icon-flag icon-sm"></span>
+                      <span className="feather-icon icon-flag icon-sm"></span>
+                      <span className="feather-icon icon-flag icon-sm"></span>
+                    </div>
+                  </div>
+                  <div className="item-tags">
+                    {combinedTags.map((tag, index) => (
+                      <div
+                        className="tag tag-gray"
+                        style={{ backgroundColor: tag.color }}
+                        onClick={() => handleTagSelection(tag)}
+                        key={index}
+                      >
+                        <span className="tag-text">{tag.tag || tag.name}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="actions">
+            <button className="apply-button" onClick={handleApplyTagsToItems} disabled={selectedItems.length === 0}>
+              Apply Tags to Selected Items
+            </button>
+            <button className="add-button" onClick={handleAddTagsToItems} disabled={selectedTags.length === 0}>
+              Add Tags to Selected Items
+            </button>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+export default EvaluationPage;

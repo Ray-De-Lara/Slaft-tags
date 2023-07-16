@@ -1,0 +1,47 @@
+.evaluation-page {
+    padding: 20px;
+    padding-top: 80px;
+  }
+  
+  .view-mode-toggle {
+    margin-bottom: 20px;
+  }
+  
+  .view-mode-toggle button {
+    background: none;
+    border: none;
+    color: #0888C9;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  
+  .evaluation-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .evaluation-table th {
+    color: #0888C9;
+    border-right: 1px solid #0888C9;
+    padding: 10px;
+  }
+  
+  .evaluation-table th:last-child {
+    border-right: none;
+  }
+  
+  .evaluation-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .evaluation-table td:last-child {
+    border-bottom: none;
+  }
+  
+  .evaluation-table td img {
+    max-width: 100%;
+    height: auto;
+  }
+  

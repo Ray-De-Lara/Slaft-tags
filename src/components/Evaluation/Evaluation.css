@@ -1,0 +1,152 @@
+/* Evaluation.css */
+
+/* Estilos previos... */
+
+/* Estilos para "Set de etiquetas" */
+.label-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: -10px;
+}
+
+.view-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+
+}
+
+/* .view-order-section{
+  padding: 10px 0px;
+} */
+
+.set-tags-section {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.set-tags-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px;
+  margin-right: 10px; /* Espaciado entre los cuadros de "Set de etiquetas" */
+  margin-bottom: 10px;
+  justify-content: center;
+}
+
+.set-tags-text {
+  margin-right: 10px;
+  color: #fff;
+  text-align: center; /* Centrar el texto horizontalmente */
+  padding-left: 10px; /* Ajustar el padding izquierdo para centrar el texto */
+}
+
+.set-tags-box:hover .set-tags-text,
+.set-admin-tags-box:hover .admin-tags-text {
+  color: #666; /* Cambiar el color del texto al hacer hover */
+  cursor: pointer; /* Cambiar el cursor al hacer hover */
+}
+
+.tag-icon,
+.plus-icon {
+  margin-right: 5px;
+  color: #999;
+}
+
+.admin-tags-text {
+  color: #999;
+}
+
+.set-admin-tags-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px;
+  margin-right: 10px; /* Espaciado entre los cuadros de "Set de etiquetas" */
+  margin-left: auto; /* Mover "Administrador de etiquetas" a la derecha */
+}
+.set-admin-order-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px;
+  margin-right: 10px; /* Espaciado entre los cuadros de "Set de etiquetas" */
+  margin-left: auto; /* Mover "Administrador de etiquetas" a la derecha */
+  background-color: white;
+  color: #999;
+}
+
+/* Estilos para "tag-container" */
+.tag-container {
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between;  */
+  /* Espacio entre los elementos a la izquierda y a la derecha */
+  margin-top: 10px;
+}
+
+.tag-container-inner {
+  display: flex;
+}
+
+.tag-actions {
+  display: flex;
+}
+
+.apply-selected-section,
+.select-all-section {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px;
+  margin-left: 10px; /* Espaciado entre los cuadros adicionales */
+}
+
+.apply-selected-text,
+.select-all-text {
+  margin-right: 10px;
+  color: #999;
+  text-align: center;
+  padding-left: 10px;
+}
+
+.apply-selected-section:hover .apply-selected-text,
+.select-all-section:hover .select-all-text {
+  color: #666;
+  cursor: pointer;
+}
+
+.fade-in {
+  animation: fade-in 0.3s ease-in;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-out {
+  animation: fade-out 0.3s ease-out;
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+

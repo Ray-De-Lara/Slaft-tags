@@ -1,0 +1,62 @@
+import React from 'react';
+import img from '../../assets/images/example.png'
+
+
+function Item({ data }) {
+  return (
+
+<div className="item">
+<div className="item-image">
+  <span className="item-label">A703</span>
+  <div className="item-rating">3.5</div>
+  <img src={img} alt="Imagen" />
+</div>
+<div className="item-details">
+  <p className="item-name">Nombre del objeto</p>
+  <p className="item-key">Clave</p>
+  <div className="item-tags">
+    <div className="tag tag-gray">
+      <span className="tag-text">Etiqueta</span>
+      <span className="close-icon">X</span>
+    </div>
+    <div className="tag tag-gray">
+      <span className="tag-text">Etiqueta</span>
+      <span className="close-icon">X</span>
+    </div>
+    <div className="tag tag-blue">
+      <span className="tag-text">Etiqueta</span>
+      <span className="close-icon">X</span>
+    </div>
+    <div className="tag tag-gray">
+      <span className="tag-text">Etiqueta</span>
+      <span className="close-icon">X</span>
+    </div>
+    <div className="tag tag-blue">
+      <span className="tag-text">Etiqueta</span>
+      <span className="close-icon">X</span>
+    </div>
+    <div className="tag tag-blue">
+      <span className="tag-text">Etiqueta</span>
+      <span className="close-icon">X</span>
+    </div>
+    <div className="tag tag-blue">
+      <span className="tag-text">Etiqueta</span>
+      <span className="close-icon">X</span>
+    </div>
+    <div className="tag tag-red">
+      <span className="tag-text">Etiqueta</span>
+      <span className="close-icon">X</span>
+    </div>
+  </div>
+</div>
+</div>
+    // <div className="item">
+    //   <img src={data.image} alt="Imagen del objeto" />
+    //   <div>{data.name}</div>
+    //   <div>{data.key}</div>
+    //   {/* Resto de la estructura y datos del elemento */}
+    // </div>
+  );
+}
+
+export default Item;

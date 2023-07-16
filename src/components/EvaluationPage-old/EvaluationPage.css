@@ -1,0 +1,288 @@
+.evaluation-page {
+  padding: 20px;
+  margin-left: 80px;
+  padding-top: 24px;
+  overflow-y: auto;
+  font-family: Helvetica;
+}
+
+.order-box-container {
+  position: absolute;
+  top: 110px;
+  right: 500;
+  /* z-index: 9999; */
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: #ddd;
+  border: none;
+  margin-top: 10px;
+}
+
+.items{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.item {
+  border: 1px solid #D2D2D2;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+  flex-basis: calc(25% - 10px); /* 25% para mostrar 4 elementos por fila */
+}
+
+.item-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: stretch; /* Ajusta la altura de los elementos */
+}
+
+.item-container > * {
+  flex-basis: calc(25% - 150px); /* 25% para mostrar 4 elementos por fila */
+  margin: 10px;
+}
+
+
+.title-section {
+  display: flex;
+  align-items: center;
+  color: #9B99A7;
+  margin-top: -39px;
+margin-bottom: -21px;
+font-size: 12px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  color: #9B99A7;
+}
+.div-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.title-icon {
+  color: #9B99A7;
+  margin-right: 10px; /* Agrega un margen derecho para separar el icono del texto */
+}
+.label-text{
+  font-weight: bold;
+  margin-top: 0px;
+}
+
+.item-key {
+  font-weight: bold;
+  margin: 0px;
+}
+
+.checkpoint-style {
+  margin-left: auto;
+}
+
+/* .item-image {
+  position: relative;
+
+} */
+.item-image {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 75%; /* Proporción 4:3 (3 dividido por 4 = 0.75) */
+}
+
+/* .item-image .image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+} */
+
+
+.image-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+
+.item-label {
+  position: absolute;
+  top: 10px;
+  right: 55px;
+  background-color: #000000;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.item-rating {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #6A7A84;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+
+.item-tags {
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  /* display: grid;
+  grid-template-columns: repeat(4, 1fr); */
+}
+
+.item-details{
+  margin-bottom: 5px;
+}
+
+.tag {
+  background-color: #ADB7C0;
+  color: #fff;
+  border-radius: 12px;
+  padding: 3px 8px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.close-icon {
+  /* Estilos para el icono de cierre */
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin-left: 5px; /* Espaciado entre el texto y el icono */
+  font-size: 16px;
+  color: #ffffff;
+}
+
+.close-icon:hover {
+  color: #ee8484; /* Cambiar el color del icono al hacer hover */
+}
+
+.tag-blue {
+  background-color: #0888C9;
+}
+
+.tag-red {
+  background-color: #F94449;
+}
+
+.tag-orange {
+  background-color: #FE7E02;
+}
+
+.item-image img {
+  width: 350px;
+  height: 250px;
+  border-radius: 10px;
+}
+
+.item-name {
+  font-size: 14px;
+  color: #74708d;
+  margin-bottom: -13px;
+
+}
+.item-type {
+  font-size: 14px;
+  color: #74708d;
+  margin-bottom: -13px;
+
+}
+.item-area {
+  font-size: 14px;
+  color: #74708d;
+  margin-bottom: -13px;
+
+}
+.item-measures {
+  font-size: 14px;
+  color: #74708d;
+  margin-bottom: -13px;
+
+}
+.item-key {
+  font-size: 20px;
+  color: black;
+  font-weight: bold;
+  font-family: Helvetica;
+}
+
+.tag-gray {
+  background-color: #ADB7C0;
+  color: #fff;
+  border-radius: 12px;
+  padding: 3px 8px;
+  display: flex;
+  align-items: center;
+}
+
+.flag-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.flag-icons {
+  color: #74708d;
+}
+
+.tag-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tag {
+  display: flex;
+  align-items: center;
+  background-color: #ADB7C0;
+  color: #fff;
+  border-radius: 12px;
+  padding: 3px 10px;
+  margin-right: 2px;
+  margin-bottom: 2px;
+  font-size: 14px;
+}
+
+.tag-actions{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 10px;
+}
+
+.select-all-section {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.tag-blue {
+  background-color: #0888C9;
+}
+
+.tag-red {
+  background-color: #F94449;
+}
+
+.tag-orange {
+  background-color: #FE7E02;
+}
+
+.view-mode-toggle {
+  margin-top: 10px;
+}
+
+.icon-blue{
+  color: #0888C9;
+}
